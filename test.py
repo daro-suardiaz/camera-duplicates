@@ -70,39 +70,19 @@ cameras = [ 'Canon 5D mkIII',
             'Canon 5dMKII',
             'Canon 5D Mk III']
 
+word_freq = dict()
+
 for camera in cameras:
     normalized_camera = normalize_marks(camera)
     normalized_camera = normalize_text(camera)
-    
-    
 
+    if normalized_camera not in word_freq.keys():
+        camera_dict = {normalized_camera: {camera: 1}}
+        word_freq[normalized_camera] = 1
+    else:
+        word_freq[camera] += 1
+    print(word_freq)
 
-
-test = None
-
-word_freq = dict()
-
-if camera not in word_freq.keys():
-    word_freq[camera] = 1
-else:
-    word_freq[camera] += 1
-print(word_freq)
-
-
-
-
-
-
-
-
-
-
-
-print('Reference: %s' % camera)
-print('Test: %s' % test)
-
-ratio = fuzz.token_sort_ratio(camera, test)
-print(ratio)
 
 
 
