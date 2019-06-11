@@ -96,6 +96,15 @@ for camera in cameras:
     
 pprint(word_freq)
 
+most_used_names = dict()
+
+for key, value in word_freq.items():
+    value_dict = value
+    most_used_name = max(value_dict, key=lambda key: value_dict[key])
+    most_used_names[key] = most_used_name
+
+pprint(most_used_names)
+
 
 
 
