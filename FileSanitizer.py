@@ -2,7 +2,7 @@ import roman
 import re
 from pprint import pprint
 
-class FileSanitizer():
+class CamerasSanitizer():
     
     def __init__(self, input_file):
         self.cameras = input_file

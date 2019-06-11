@@ -1,10 +1,10 @@
-from CamerasSanitizer import FileSanitizer
+from FileSanitizer import CamerasSanitizer
 from pprint import pprint
 
 
 cameras = open('duplicates.txt', 'r')
 
-Sanitizer = FileSanitizer(cameras)
+Sanitizer = CamerasSanitizer(cameras)
 
 Sanitizer.weight_variations()
 pprint(Sanitizer.word_freq)
