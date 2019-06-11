@@ -49,7 +49,7 @@ def normalize_string(input_string):
 
         normalized_tokens.append(token)
     
-    # convert the list of normalized tokens into a single string
+    # convert the list of normalized tokens into a single string and normalize it
     output_string = ' '.join(normalized_tokens)
     output_string = output_string.strip()
     output_string = output_string.lower()
@@ -59,6 +59,7 @@ def normalize_string(input_string):
 
 
 cameras = [ 'Canon 5dMKII',
+            '5dMKII',
             'Canon 5D mark II',
             'Canon 5d MKII',
             'Canon 5d MKII',
@@ -70,8 +71,18 @@ word_freq = dict()
 for camera in cameras:
     normalized_camera = normalize_string(camera)
     
-
+    # checks if the normalized string is already a key in the dictionary of unique values
     if normalized_camera not in word_freq.keys():
+        # check if the normalized string is a substring of an existing kwy
+        for key in word_freq.keys():
+            if re.search(normalized_camera, key):
+                normalized_camera = key
+                if camera not in word_freq[normalized_camera].keys():
+                    new_value = None
+                    new_value = {camera: 1}
+                    word_freq[normalized_camera].update(new_value)
+                else:
+                    word_freq[normalized_camera][camera] += 1
         new_camera = None
         new_camera = {normalized_camera: {camera: 1}}
         word_freq.update(new_camera)
