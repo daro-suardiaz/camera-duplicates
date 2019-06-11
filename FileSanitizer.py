@@ -140,13 +140,14 @@ class CamerasSanitizer():
         """
         for camera in self.cameras:
             normalized_string = self.normalize_string(camera)
-        
+            
+            # check if the normalized string is a substring of an existing key
             for key in self.cameras_mapping_dict.keys():
                 if re.search(normalized_string, key):
                     normalized_string = key
             
             if camera != self.cameras_mapping_dict[normalized_string]:
-                
+                # add the convertion to the sanitized values dict
                 if camera not in self.sanitized_values.keys():
                     new_mapping = {camera: self.cameras_mapping_dict[normalized_string]}
                     self.sanitized_values.update(new_mapping)
